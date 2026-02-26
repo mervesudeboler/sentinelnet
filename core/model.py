@@ -109,8 +109,8 @@ class AdaptiveModel:
 
             # Partial fit every 10 samples
             if len(self._buffer_X) >= 10 and self.total_observed % 10 == 0:
-                X = self._scaler.transform(list(self._buffer_X))
-                y_arr = np.array(list(self._buffer_y))
+                X = self._scaler.transform(np.array(list(self._buffer_X), dtype=np.float32))
+                y_arr = np.array(list(self._buffer_y), dtype=np.int32)
                 self._online.partial_fit(X, y_arr, classes=CLASSES)
 
             # Save periodically
