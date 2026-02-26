@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SentinelNet — AI Network Monitor</title>
+  <link rel="stylesheet" href="/static/css/style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ── Header ─────────────────────────────────────────────────── -->
+<header class="header">
+  <div class="header-left">
+    <span class="logo">⬡ SentinelNet</span>
+    <span class="badge" id="status-badge">● CONNECTING</span>
+  </div>
+  <div class="header-right">
+    <span class="header-info" id="uptime-label">Uptime: --</span>
+    <a href="/api/report/csv" class="btn-outline">↓ CSV</a>
+    <a href="/api/report/json" class="btn-outline">↓ JSON</a>
+  </div>
+</header>
+
+<!-- ── Stat Cards ──────────────────────────────────────────────── -->
+<section class="stats-grid">
+  <div class="card stat-card">
+    <div class="stat-label">Total Packets</div>
+    <div class="stat-value" id="stat-total">0</div>
+  </div>
+  <div class="card stat-card">
+    <div class="stat-label">Attacks Detected</div>
+    <div class="stat-value danger" id="stat-attacks">0</div>
+  </div>
+  <div class="card stat-card">
+    <div class="stat-label">Attack Rate</div>
+    <div class="stat-value" id="stat-rate">0%</div>
+  </div>
+  <div class="card stat-card">
+    <div class="stat-label">Model Accuracy</div>
+    <div class="stat-value success" id="stat-accuracy">--</div>
+  </div>
+  <div class="card stat-card">
+    <div class="stat-label">Packets Learned</div>
+    <div class="stat-value" id="stat-learned">0</div>
+  </div>
+</section>
+
+<!-- ── Main Grid ───────────────────────────────────────────────── -->
+<div class="main-grid">
+
+  <!-- Live Traffic Chart -->
+  <div class="card chart-card">
+    <div class="card-header">
+      <span>Live Traffic</span>
+      <span class="pulse-dot"></span>
+    </div>
+    <canvas id="trafficChart" height="120"></canvas>
+  </div>
+
+  <!-- Attack Type Breakdown -->
+  <div class="card chart-card small">
+    <div class="card-header">Attack Types</div>
+    <canvas id="attackChart" height="160"></canvas>
+  </div>
+
+  <!-- Recent Alerts -->
+  <div class="card alerts-card">
+    <div class="card-header">
+      <span>Recent Alerts</span>
+      <span class="alert-count" id="alert-count">0</span>
+    </div>
+    <div class="alerts-list" id="alerts-list">
+      <div class="empty-state">No alerts yet — monitoring...</div>
+    </div>
+  </div>
+
+  <!-- Live Packet Feed -->
+  <div class="card feed-card">
+    <div class="card-header">
+      <span>Packet Feed</span>
+      <button class="btn-sm" id="pause-btn" onclick="togglePause()">⏸ Pause</button>
+    </div>
+    <div class="feed-table-wrap">
+      <table class="feed-table">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Src IP</th>
+            <th>Dst IP</th>
+            <th>Port</th>
+            <th>Proto</th>
+            <th>Label</th>
+            <th>Conf</th>
+          </tr>
+        </thead>
+        <tbody id="feed-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── Footer ──────────────────────────────────────────────────── -->
+<footer class="footer">
+  SentinelNet &nbsp;·&nbsp; Made by <a href="https://github.com/mervesudeboler" target="_blank">Merve Sude Boler</a>
+  &nbsp;·&nbsp; Model v<span id="model-ver">1</span>
+  &nbsp;·&nbsp; <span id="footer-samples">0</span> samples observed
+</footer>
+
+<script src="/static/js/dashboard.js"></script>
+</body>
+</html>
