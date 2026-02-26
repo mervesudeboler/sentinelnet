@@ -13,7 +13,7 @@
 
 ## Dashboard Preview
 
-![SentinelNet Dashboard](assets/dashboard.png)
+![SentinelNet Dashboard](dashboard.png)
 
 ---
 
