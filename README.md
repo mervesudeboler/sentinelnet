@@ -11,6 +11,12 @@
 
 ---
 
+## Dashboard Preview
+
+![SentinelNet Dashboard](assets/dashboard.png)
+
+---
+
 ## What makes SentinelNet different?
 
 Most IDS tools use static models trained on old datasets. SentinelNet starts with a **pre-trained baseline** (97%+ accuracy) and then **continuously learns from your network** — improving every packet it sees. The longer it runs, the smarter it gets.
@@ -53,6 +59,10 @@ python3 main.py --list-interfaces
 
 # Then start monitoring
 sudo python3 main.py --interface en0
+
+> **macOS users:** Port 5000 is used by AirPlay Receiver by default.  
+> Use `--port 8080` and open http://localhost:8080 instead.  
+> To disable: System Settings → General → AirDrop & Handoff → AirPlay Receiver → Off
 ```
 
 ### 4. Open Dashboard
